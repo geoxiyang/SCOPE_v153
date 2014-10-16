@@ -1,0 +1,43 @@
+%% Run only biochemical.m under different parameters, for example, PAR.
+
+%% 1. Create default input structure
+
+biochem_in = struct('Cs',380,...
+                    'Q',1000,...
+                    'T',20,...
+                    'eb',15,...
+                    'O',209,...
+                    'p',970,...
+                    'Vcmo',80,...
+                    'm',8,...
+                    'Type',0,...
+                    'tempcor',1,...
+                    'Tparams',[0.2,0.3,281,308,328],...
+                    'Rdparam',0.015,...
+                    'stressfactor',1,...
+                    'Fluorescence_model',0);
+                
+                
+%% 2. Change the varying parameter
+
+iter = 40.0;
+fs   = zeros(1,iter);
+par  = zeros(1,iter);
+
+for ii = 1:40
+   biochem_in.Q = ii*(2000-0)/iter;  
+   biochem_out  = biochemical(biochem_in);
+   par(1,ii)    = ii*(2000-0)/iter; 
+   fs(1,ii)     = biochem_out.fs;
+end
+
+
+%% 3. Plot the figure and save
+ofigure  = '/Users/xiyang/Dropbox/Mypaper/6.2014-Fluorescence/JPG/';
+
+plot(par,fs.*par,'-k','LineWidth',2)   
+
+ylabel('SIF(umol m^{-2}s^{-1})','FontSize',16,'FontName','Whitney-Book');
+xlabel('PAR(umol m^{-2}s^{-1})','FontSize',16,'FontName','Whitney-Book');
+set(gca,'FontSize',16,'FontName','Whitney-Book');
+print('-dpng','-r300',[ofigure 'SIF-PAR.png']);
