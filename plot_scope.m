@@ -5,7 +5,7 @@ clc
 
 %% 1. Load data
 
-work_dir    = '/Volumes/XiYangResearch/src/SCOPE/SCOPE_v1.53/output/HF_2013_2014-10-15-1158/';
+work_dir    = '/Volumes/XiYangResearch/src/SCOPE/SCOPE_v1.53/output/HF_2013_2014-10-16-1036/';
 wl          = dlmread([work_dir 'wl.dat'],'',2,0);
 fEnergy     = dlmread([work_dir 'fluorescence.dat'],'',2,0);
 A_fluxes    = dlmread([work_dir 'fluxes.dat'],'',[2,10,49,10]);
@@ -48,8 +48,8 @@ load('/Volumes/XiYangResearch/src/HF_Fluo_data/HF_2013_GPP.mat','gpp_raw')
 
 %% 2. Plot data
 
-ofigure     = '/Volumes/XiYangResearch/Projects/1.SCOPE_HF/1.JPG/SIF_test5.png';
-ofigure1    = '/Volumes/XiYangResearch/Projects/1.SCOPE_HF/1.JPG/gpp_test5.png';
+ofigure     = '/Volumes/XiYangResearch/Projects/1.SCOPE_HF/1.JPG/SIF_test6.png';
+ofigure1    = '/Volumes/XiYangResearch/Projects/1.SCOPE_HF/1.JPG/gpp_test6.png';
 
 
 % 2.1 SIF obs vs. model
