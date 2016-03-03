@@ -244,7 +244,7 @@ while CONT                          % while energy balance does not close
     
     biochem_out         = b(biochem_in);
     
-    Ah                  = biochem_out.A;
+    Ah                  = biochem_out.Ag; % XY replaced biochem_out.A with biochem_out.Ag
     Cih                 = biochem_out.Ci;
     Fh                  = biochem_out.eta;
     rcwh                = biochem_out.rcw;
@@ -259,7 +259,7 @@ while CONT                          % while energy balance does not close
         
     biochem_out         = b(biochem_in);
  
-    Au                  = biochem_out.A;
+    Au                  = biochem_out.Ag; % XY replaced biochem_out.A with biochem_out.Ag
     Ciu                 = biochem_out.Ci;
     Fu                  = biochem_out.eta;
     rcwu                = biochem_out.rcw;

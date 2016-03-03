@@ -477,7 +477,7 @@ end
         V           = min_root(atheta,-(Vc+Ve),Vc.*Ve);
         Ag          = min_root(0.98,-(V+Vs),V.*Vs);
         A           = Ag - Rd;
-        
+        %A           = Ag; %XY test for gross A
         if nargout > 1
             biochem_out.A = A;
             biochem_out.Ag = Ag;
@@ -531,6 +531,7 @@ Ci          = Ci*1e6 ./ p .* 1E3;
 %% Collect outputs
 
 biochem_out.A       = A;
+biochem_out.Ag      = Ag; %XY added Gross Photosynthesis as the output
 biochem_out.Ci      = Ci;
 biochem_out.rcw     = rcw;
 biochem_out.gs      =  gs;
@@ -675,11 +676,11 @@ function [eta,qE,qQ,fs,fo,fm,fo0,fm0,Kn] = Fluorescencemodel(ps,x, Kp,Kf,Kd,Knpa
 
     %Kn          = Kn .* Kd/0.8738;          % temperature correction of Kn similar to that of Kd
 
-    fo0         = Kf./(Kf+Kp+Kd);           % dark adapted fluorescence yield Fo
-    fo          = Kf./(Kf+Kp+Kd+Kn);           % dark adapted fluorescence yield Fo
-    fm          = Kf./(Kf   +Kd+Kn);        % light adapted fluorescence yield Fm
-    fm0         = Kf./(Kf   +Kd);        % light adapted fluorescence yield Fm
-    fs          = fm.*(1-ps);
+    fo0         = Kf./(Kf+Kp+Kd);           % dark adapted fluorescence yield Fo -- this should be the quantum yield of minimal Chl a fluorescence
+    fo          = Kf./(Kf+Kp+Kd+Kn);           % XY: light adapted fluorescence yield Fo'
+    fm          = Kf./(Kf   +Kd+Kn);        % light adapted fluorescence yield Fm' (XY: Eq.13 in vdT 2014)
+    fm0         = Kf./(Kf   +Kd);        %  XY: dark-adapted fluorescence yield Fm
+    fs          = fm.*(1-ps);            %(Eq.12 in vdT 2014)
     eta         = fs./fo0;
     qQ          = 1-(fs-fo)./(fm-fo);       % photochemical quenching
     qE          = 1-(fm-fo)./(fm0-fo0);     % non-photochemical quenching

@@ -183,7 +183,7 @@ for PS = 2:-1:1
             vbEmini     = absfo * MpluEmin(i,j)   + foctl * MminEmin(i,j);     % [nli,nlazi]
             vfEplui     = absfo * MpluEplu(i,j+1) - foctl * MminEplu(i,j+1);   % [nli,nlazi]
             
-            piLs(j)     = mean((etau(:,:,j) .*(wEsuni + vbEmini + vfEplui))'*lidf);
+            piLs(j)     = mean((etau(:,:,j) .*(wEsuni + vbEmini + vfEplui))'*lidf);  %XY: Eq. 39 in vdT BG 2009
             piLd(j)     = etah(j) * mean((vbEmini + vfEplui)'*lidf);
             
             Fsmin       = mean((etau(:,:,j).*(sfEsuni + sigfEmini + sigbEplui))'*lidf);
